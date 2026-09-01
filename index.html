@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IBM vs VMware Support Pricing | Arrow ECS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ═══════════════════════════════════════════
+       IBM Carbon Design System tokens
+    ═══════════════════════════════════════════ */
+    /* ── Fixed palette (never changes with theme) ── */
+    :root {
+      --c-gray-100:  #161616;
+      --c-gray-90:   #262626;
+      --c-gray-80:   #393939;
+      --c-gray-70:   #525252;
+      --c-gray-60:   #6f6f6f;
+      --c-gray-50:   #8d8d8d;
+      --c-gray-20:   #e0e0e0;
+      --c-gray-10:   #f4f4f4;
+      --c-white:     #ffffff;
+      --c-blue-70:   #003a6d;
+      --c-blue-60:   #0f62fe;
+      --c-blue-50:   #4589ff;
+      --c-blue-40:   #78a9ff;
+      --c-blue-20:   #d0e2ff;
+      --c-blue-10:   #edf5ff;
+      --c-green-60:  #198038;
+      --c-green-40:  #42be65;
+      --c-green-10:  #defbe6;
+      --c-red-60:    #da1e28;
+      --c-red-10:    #fff1f1;
+      --c-yellow-30: #f1c21b;
+      --c-yellow-10: #fcf4d6;
+      --c-teal-60:   #007d79;
+      --c-teal-50:   #009d9a;
+      --c-teal-40:   #3ddbd9;
+      --c-teal-10:   #d9fbfb;
+      --arrow-orange: #f47920;
+    }
+
+    /* ── LIGHT theme (default) ── */
+    html[data-theme="light"] {
+      --bg:               #f4f4f4;
+      --surface:          #ffffff;
+      --surface-2:        #f4f4f4;
+      --border:           #e0e0e0;
+      --text-primary:     #161616;
+      --text-secondary:   #6f6f6f;
+      --text-helper:      #8d8d8d;
+      /* nav / header stay dark in light mode — Carbon convention */
+      --nav-bg:           #161616;
+      --nav-border:       #393939;
+      --nav-text:         #ffffff;
+      --page-hdr-bg:      #262626;
+      --page-hdr-border:  #393939;
+      --page-title-color: #ffffff;
+      --page-sub-color:   #8d8d8d;
+      --footer-bg:        #262626;
+      --footer-border:    #393939;
+      --table-head-bg:    #f4f4f4;
+      --table-hover-bg:   #edf5ff;
+      --input-focus-bg:   #edf5ff;
+      --toolbar-bg:       #ffffff;
+      --toolbar-add-bg:   #161616;
+      --toolbar-add-hover:#393939;
+      --card-term-color:  #6f6f6f;
+      --notif-bg:         #fcf4d6;
+      --notif-border:     #f1c21b;
+      --notif-text:       #161616;
+      --remove-hover-bg:  #fff1f1;
+      --remove-hover-col: #da1e28;
+    }
+
+    /* ── DARK theme (default) ── */
+    html[data-theme="dark"],
+    html:not([data-theme]) {
+      --bg:               #161616;
+      --surface:          #262626;
+      --surface-2:        #393939;
+      --border:           #525252;
+      --text-primary:     #f4f4f4;
+      --text-secondary:   #8d8d8d;
+      --text-helper:      #6f6f6f;
+      --nav-bg:           #161616;
+      --nav-border:       #393939;
+      --nav-text:         #ffffff;
+      --page-hdr-bg:      #161616;
+      --page-hdr-border:  #393939;
+      --page-title-color: #ffffff;
+      --page-sub-color:   #6f6f6f;
+      --footer-bg:        #161616;
+      --footer-border:    #393939;
+      --table-head-bg:    #393939;
+      --table-hover-bg:   #003a6d;
+      --input-focus-bg:   #003a6d;
+      --toolbar-bg:       #262626;
+      --toolbar-add-bg:   #393939;
+      --toolbar-add-hover:#525252;
+      --card-term-color:  #8d8d8d;
+      --notif-bg:         #2d2510;
+      --notif-border:     #f1c21b;
+      --notif-text:       #f4f4f4;
+      --remove-hover-bg:  #2d1214;
+      --remove-hover-col: #ff8389;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'IBM Plex Sans', -apple-system, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      font-size: 14px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    /* ─────────────────────────────────────────
+       GLOBAL NAV BAR  (Carbon UI Shell)
+    ───────────────────────────────────────── */
+    .c-nav {
+      background: var(--nav-bg);
+      height: 48px;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      border-bottom: 1px solid var(--nav-border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .c-nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      height: 48px;
+      text-decoration: none;
+    }
+
+    /* Carbon-style product logo block */
+    .c-nav-logo {
+      display: flex;
+      align-items: center;
+      height: 48px;
+      padding: 0 16px;
+      border-right: 1px solid var(--nav-border);
+    }
+
+    .c-nav-logo svg {
+      display: block;
+    }
+
+    .c-nav-product {
+      padding: 0 16px;
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--nav-text);
+      letter-spacing: 0.1px;
+      white-space: nowrap;
+    }
+
+    .c-nav-spacer { flex: 1; }
+
+    .c-nav-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--c-gray-50);
+      border: 1px solid var(--c-gray-70);
+      padding: 2px 8px;
+      margin-right: 12px;
+    }
+
+    /* ── Theme toggle button ── */
+    .btn-theme {
+      height: 32px;
+      padding: 0 12px;
+      background: transparent;
+      border: 1px solid var(--nav-border);
+      color: var(--c-gray-50);
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+      white-space: nowrap;
+    }
+    .btn-theme:hover {
+      background: var(--nav-border);
+      color: #ffffff;
+    }
+
+    /* ─────────────────────────────────────────
+       NOTIFICATION BANNER (Carbon Inline)
+    ───────────────────────────────────────── */
+    .c-notification {
+      background: var(--notif-bg);
+      border-left: 3px solid var(--notif-border);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px 16px 14px 14px;
+    }
+
+    .c-notification-icon {
+      flex-shrink: 0;
+      margin-top: 1px;
+      color: #bc8c00;
+    }
+
+    .c-notification-content {
+      font-size: 13px;
+      color: var(--notif-text);
+      line-height: 1.5;
+    }
+
+    .c-notification-content strong {
+      font-weight: 600;
+    }
+
+    /* ─────────────────────────────────────────
+       PAGE HEADER
+    ───────────────────────────────────────── */
+    .c-page-header {
+      background: var(--page-hdr-bg);
+      padding: 40px 0 36px;
+      border-bottom: 1px solid var(--page-hdr-border);
+    }
+
+    .c-page-header-inner {
+      max-width: 1056px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .c-eyebrow {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--c-blue-40);
+      margin-bottom: 10px;
+    }
+
+    .c-page-title {
+      font-size: 36px;
+      font-weight: 300;
+      color: var(--page-title-color);
+      line-height: 1.22;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+
+    .c-page-title span {
+      font-weight: 600;
+    }
+
+    .c-page-subtitle {
+      font-size: 14px;
+      color: var(--page-sub-color);
+      font-weight: 300;
+    }
+
+    /* ─────────────────────────────────────────
+       MAIN CONTENT
+    ───────────────────────────────────────── */
+    main {
+      max-width: 1056px;
+      margin: 0 auto;
+      padding: 32px 32px 64px;
+    }
+
+    /* ─────────────────────────────────────────
+       SECTION LABEL  (Carbon label style)
+    ───────────────────────────────────────── */
+    .c-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+
+    /* ─────────────────────────────────────────
+       ENVIRONMENT BUILDER  (Carbon Data Table)
+    ───────────────────────────────────────── */
+    .env-table-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      margin-bottom: 16px;
+    }
+
+    .env-table-head {
+      display: grid;
+      grid-template-columns: 1fr 140px 200px 48px;
+      background: var(--table-head-bg);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .env-th {
+      padding: 11px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      border-right: 1px solid var(--border);
+    }
+    .env-th:last-child { border-right: none; }
+
+    .server-row {
+      display: grid;
+      grid-template-columns: 1fr 140px 200px 48px;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.1s;
+    }
+    .server-row:last-child { border-bottom: none; }
+    .server-row:hover { background: var(--table-hover-bg); }
+
+    .env-td {
+      padding: 0;
+      border-right: 1px solid var(--border);
+      display: flex;
+      align-items: stretch;
+    }
+    .env-td:last-child { border-right: none; justify-content: center; align-items: center; }
+
+    /* Carbon-style select / input — no radius, full-height */
+    .env-td select,
+    .env-td input[type="number"] {
+      width: 100%;
+      height: 48px;
+      padding: 0 16px;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 14px;
+      color: var(--text-primary);
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      outline: none;
+      appearance: none;
+      -webkit-appearance: none;
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    .env-td select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='%236f6f6f' d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 36px;
+      cursor: pointer;
+    }
+
+    .env-td select:focus,
+    .env-td input[type="number"]:focus {
+      background: var(--input-focus-bg);
+      border-bottom-color: var(--c-blue-60);
+    }
+
+    /* Row subtotal cell */
+    .row-subtotal {
+      width: 100%;
+      padding: 0 16px;
+      display: flex;
+      align-items: center;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      color: var(--text-secondary);
+      gap: 6px;
+    }
+
+    .row-subtotal .rs-val {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    /* Remove row button */
+    .btn-remove-row {
+      width: 48px;
+      height: 48px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      transition: background 0.1s, color 0.1s;
+    }
+    .btn-remove-row:hover { background: var(--remove-hover-bg); color: var(--remove-hover-col); }
+    .btn-remove-row:disabled { opacity: 0.2; cursor: default; pointer-events: none; }
+
+    /* Table toolbar */
+    .env-toolbar {
+      background: var(--toolbar-bg);
+      border: 1px solid var(--border);
+      border-top: none;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      height: 48px;
+      margin-bottom: 32px;
+    }
+
+    .btn-add-row {
+      height: 48px;
+      padding: 0 20px;
+      background: var(--toolbar-add-bg);
+      color: var(--c-white);
+      border: none;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.15s;
+    }
+    .btn-add-row:hover { background: var(--toolbar-add-hover); }
+
+    .toolbar-divider {
+      width: 1px;
+      height: 24px;
+      background: var(--border);
+      margin: 0 16px;
+    }
+
+    .env-row-count {
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    /* ─────────────────────────────────────────
+       CONFIG SUMMARY STRIP
+    ───────────────────────────────────────── */
+    .config-strip {
+      background: var(--c-blue-70);
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 32px;
+      overflow: hidden;
+    }
+
+    .config-strip-label {
+      padding: 14px 20px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: var(--c-blue-40);
+      border-right: 1px solid rgba(255,255,255,0.1);
+      white-space: nowrap;
+    }
+
+    .config-stat {
+      padding: 14px 24px;
+      border-right: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .config-stat-value {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--c-white);
+      font-family: 'IBM Plex Mono', monospace;
+      line-height: 1;
+    }
+
+    .config-stat-label {
+      font-size: 11px;
+      color: var(--c-blue-40);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    /* ─────────────────────────────────────────
+       PRICE CARDS
+    ───────────────────────────────────────── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin-bottom: 2px;
+      background: var(--border);
+    }
+
+    .price-card {
+      background: var(--surface);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Card top colour band */
+    .card-band {
+      height: 4px;
+    }
+    .card-band.vmware { background: var(--c-teal-50); }
+    .card-band.ibm    { background: var(--c-blue-60); }
+
+    .card-header {
+      padding: 24px 28px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .card-vendor {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
+    }
+    .card-product {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.2;
+    }
+
+    .card-term-badge {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: var(--card-term-color);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+
+    /* IBM term toggle — Carbon Content Switcher */
+    .term-switcher {
+      display: flex;
+      border: 1px solid var(--c-blue-60);
+      margin: 20px 28px 0;
+      width: fit-content;
+    }
+
+    .term-btn {
+      padding: 8px 20px;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      border: none;
+      background: var(--surface);
+      color: var(--c-blue-60);
+      cursor: pointer;
+      transition: background 0.12s, color 0.12s;
+      position: relative;
+    }
+
+    .term-btn + .term-btn {
+      border-left: 1px solid var(--c-blue-60);
+    }
+
+    .term-btn.active {
+      background: var(--c-blue-60);
+      color: var(--c-white);
+    }
+
+    .term-btn:hover:not(.active) {
+      background: var(--input-focus-bg);
+    }
+
+    /* Big price */
+    .card-price-area {
+      padding: 28px 28px 0;
+    }
+
+    .price-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-helper);
+      margin-bottom: 8px;
+    }
+
+    .price-amount {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 48px;
+      font-weight: 600;
+      line-height: 1;
+      letter-spacing: -2px;
+    }
+    .price-amount.vmware { color: var(--c-teal-50); }
+    .price-amount.ibm    { color: var(--c-blue-60); }
+
+    /* Breakdown table */
+    .card-breakdown {
+      margin: 20px 28px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .bd-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+    }
+    .bd-row:last-child { border-bottom: none; }
+
+    .bd-key { color: var(--text-secondary); }
+    .bd-val {
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 600;
+      color: var(--text-primary);
+      font-size: 12px;
+    }
+
+    .card-footnote {
+      padding: 16px 28px 24px;
+      font-size: 11px;
+      color: var(--text-helper);
+      line-height: 1.6;
+      margin-top: auto;
+    }
+
+    /* ─────────────────────────────────────────
+       SAVINGS PANEL
+    ───────────────────────────────────────── */
+    .savings-panel {
+      background: var(--surface);
+      border-left: 4px solid var(--c-green-60);
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 28px;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .savings-panel.negative {
+      border-left-color: var(--c-red-60);
+    }
+
+    .savings-left {}
+
+    .savings-headline {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--c-green-60);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .savings-panel.negative .savings-headline { color: var(--c-red-60); }
+
+    .savings-sub {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .savings-figure {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 40px;
+      font-weight: 600;
+      color: var(--c-green-60);
+      letter-spacing: -1.5px;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    .savings-panel.negative .savings-figure { color: var(--c-red-60); }
+
+    /* ─────────────────────────────────────────
+       ACTIONS BAR
+    ───────────────────────────────────────── */
+    .actions-bar {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 8px;
+    }
+
+    .btn-primary {
+      height: 48px;
+      padding: 0 24px;
+      background: var(--c-blue-60);
+      color: var(--c-white);
+      border: none;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: background 0.15s;
+      letter-spacing: 0.1px;
+    }
+    .btn-primary:hover { background: var(--c-blue-70); }
+
+    /* ─────────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────────── */
+    footer {
+      background: var(--footer-bg);
+      border-top: 1px solid var(--footer-border);
+      padding: 24px 32px;
+    }
+
+    .footer-inner {
+      max-width: 1056px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer-arrow-mark {
+      background: var(--arrow-orange);
+      color: #fff;
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: 1px;
+      padding: 3px 8px;
+    }
+
+    .footer-text {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .footer-disclaimer {
+      font-size: 11px;
+      color: var(--c-gray-60);
+      max-width: 480px;
+      text-align: right;
+      line-height: 1.5;
+    }
+
+    /* ═══════════════════════════════════════════
+       PRINT
+    ═══════════════════════════════════════════ */
+    @media print {
+      @page { margin: 1.5cm; }
+
+      body { background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+      .c-nav, .env-table-wrap, .env-toolbar, .actions-bar, .term-switcher { display: none !important; }
+
+      .c-page-header { background: #262626 !important; }
+      .c-notification { border-left-color: #f1c21b !important; }
+      .config-strip { background: #003a6d !important; }
+      .card-band.vmware { background: #009d9a !important; }
+      .card-band.ibm { background: #0f62fe !important; }
+      .savings-panel { border-left-color: #198038 !important; }
+      .savings-panel.negative { border-left-color: #da1e28 !important; }
+      footer { background: #262626 !important; border-top-color: #393939 !important; }
+
+      .card-grid { gap: 1px; background: #e0e0e0 !important; }
+
+      main { padding: 16px 0; }
+    }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 740px) {
+      .env-table-head,
+      .server-row { grid-template-columns: 1fr 100px 130px 48px; }
+      .card-grid { grid-template-columns: 1fr; gap: 2px; }
+      .c-page-title { font-size: 26px; }
+      .price-amount { font-size: 36px; }
+      .config-strip { flex-wrap: wrap; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+      .footer-disclaimer { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════
+       NAVIGATION
+  ═══════════════════════════════════════════ -->
+  <nav class="c-nav">
+    <div class="c-nav-brand">
+      <div class="c-nav-logo">
+        <!-- IBM 8-bar logo (SVG) -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="16" viewBox="0 0 40 16" fill="#ffffff">
+          <rect x="0"  y="0"  width="40" height="2.3"/>
+          <rect x="0"  y="3.9" width="40" height="2.3"/>
+          <rect x="0"  y="7.8" width="13" height="2.3"/>
+          <rect x="14.5" y="7.8" width="11" height="2.3"/>
+          <rect x="27" y="7.8" width="13" height="2.3"/>
+          <rect x="0"  y="11.7" width="13" height="2.3"/>
+          <rect x="14.5" y="11.7" width="11" height="2.3"/>
+          <rect x="27" y="11.7" width="13" height="2.3"/>
+        </svg>
+      </div>
+      <span class="c-nav-product">Support Pricing Comparison</span>
+    </div>
+    <div class="c-nav-spacer"></div>
+    <div class="c-nav-tag">Indicative Pricing</div>
+    <button class="btn-theme" id="btn-theme" onclick="toggleTheme()">
+      <svg id="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 32 32" fill="currentColor" style="display:none"><path d="M13.502 5.414a15.075 15.075 0 0 0 11.594 17.71 11.113 11.113 0 0 1-7.975 3.363c-6.127 0-11.073-4.956-11.073-11.1a11.121 11.121 0 0 1 7.454-10.973M14.98 3a1.002 1.002 0 0 0-.175.016 13.096 13.096 0 0 0-1.825 25.4A13.094 13.094 0 0 0 27.985 18.2a1 1 0 0 0-.224-1.673A13.08 13.08 0 0 1 16.03 4.06 1 1 0 0 0 14.98 3z"/></svg>
+      <svg id="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 32 32" fill="currentColor"><path d="M16 12a4 4 0 1 1-4 4 4.005 4.005 0 0 1 4-4m0-2a6 6 0 1 0 6 6 6 6 0 0 0-6-6zM15 4h2v3h-2zM15 25h2v3h-2zM4 15h3v2H4zM25 15h3v2h-3zM7.05 6.64l1.41-1.41 2.12 2.12-1.41 1.41zM21.42 21.01l1.41-1.41 2.12 2.12-1.41 1.41zM6.64 24.95l-1.41-1.41 2.12-2.12 1.41 1.41zM21.01 10.58l-1.41-1.41 2.12-2.12 1.41 1.41z"/></svg>
+      <span id="theme-label">Light Mode</span>
+    </button>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════
+       NOTIFICATION
+  ═══════════════════════════════════════════ -->
+  <div class="c-notification">
+    <div class="c-notification-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+        <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm-.75 3.5h1.5v5h-1.5v-5zm0 6h1.5v1.5h-1.5V10.5z"/>
+      </svg>
+    </div>
+    <div class="c-notification-content">
+      <strong>All pricing shown is indicative only.</strong> An official quote must be generated by Arrow ECS before any commercial commitment is made. Prices exclude applicable taxes.
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       PAGE HEADER
+  ═══════════════════════════════════════════ -->
+  <div class="c-page-header">
+    <div class="c-page-header-inner">
+      <div class="c-eyebrow">Arrow ECS &nbsp;/ &nbsp;IBM Practice</div>
+      <h1 class="c-page-title">IBM vs VMware<br><span>Support Pricing Tool</span></h1>
+      <p class="c-page-subtitle">Configure your server estate below to generate an indicative side-by-side cost comparison.</p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       MAIN
+  ═══════════════════════════════════════════ -->
+  <main>
+
+    <!-- ── Environment Builder ── -->
+    <div class="c-label" style="margin-bottom:8px;">Configure Your Environment</div>
+
+    <div class="env-table-wrap">
+      <div class="env-table-head">
+        <div class="env-th">Server Profile</div>
+        <div class="env-th">Quantity</div>
+        <div class="env-th">Subtotal (sockets / cores)</div>
+        <div class="env-th"></div>
+      </div>
+      <div id="server-rows"></div>
+    </div>
+
+    <div class="env-toolbar">
+      <button class="btn-add-row" id="btn-add-row">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M17 15V8h-2v7H8v2h7v7h2v-7h7v-2h-7z"/></svg>
+        Add Server Type
+      </button>
+      <div class="toolbar-divider"></div>
+      <span class="env-row-count" id="row-count-label"></span>
+    </div>
+
+    <!-- ── Config Summary Strip ── -->
+    <div class="config-strip" id="config-strip" style="display:none;">
+      <div class="config-strip-label">Total Environment</div>
+      <div class="config-stat">
+        <div class="config-stat-value" id="summary-servers">—</div>
+        <div class="config-stat-label">Servers</div>
+      </div>
+      <div class="config-stat">
+        <div class="config-stat-value" id="summary-sockets">—</div>
+        <div class="config-stat-label">Sockets</div>
+      </div>
+      <div class="config-stat">
+        <div class="config-stat-value" id="summary-cores">—</div>
+        <div class="config-stat-label">Cores</div>
+      </div>
+    </div>
+
+    <!-- ── Results ── -->
+    <div id="results-section" style="display:none;">
+
+      <div class="c-label" style="margin-bottom:8px;">Indicative Support Pricing Comparison</div>
+
+      <!-- Price cards -->
+      <div class="card-grid">
+
+        <!-- VMware -->
+        <div class="price-card">
+          <div class="card-band vmware"></div>
+          <div class="card-header">
+            <div>
+              <div class="card-vendor">Broadcom / VMware</div>
+              <div class="card-product">vSphere Support Subscription</div>
+            </div>
+            <div class="card-term-badge">3-Year Term</div>
+          </div>
+          <div class="card-price-area">
+            <div class="price-eyebrow">Total Contract Value</div>
+            <div class="price-amount vmware" id="vmware-total">—</div>
+          </div>
+          <div class="card-breakdown">
+            <div class="bd-row">
+              <span class="bd-key">Per year</span>
+              <span class="bd-val" id="vmware-per-year">—</span>
+            </div>
+            <div class="bd-row">
+              <span class="bd-key">Rate</span>
+              <span class="bd-val">€400 / core / yr</span>
+            </div>
+            <div class="bd-row">
+              <span class="bd-key">Minimum term</span>
+              <span class="bd-val">3 years — mandatory</span>
+            </div>
+          </div>
+          <div class="card-footnote">
+            Broadcom VMware list pricing. 3-year subscription minimum enforced at point of sale. Subject to change without notice.
+          </div>
+        </div>
+
+        <!-- IBM -->
+        <div class="price-card">
+          <div class="card-band ibm"></div>
+          <div class="card-header">
+            <div>
+              <div class="card-vendor">IBM</div>
+              <div class="card-product">IBM Support for VMware</div>
+            </div>
+            <div class="card-term-badge" id="ibm-term-badge">1-Year Term</div>
+          </div>
+
+          <div class="term-switcher">
+            <button class="term-btn active" id="btn-1yr" onclick="setIBMTerm(1)">1 Year</button>
+            <button class="term-btn"        id="btn-3yr" onclick="setIBMTerm(3)">3 Years</button>
+          </div>
+
+          <div class="card-price-area" style="padding-top:20px;">
+            <div class="price-eyebrow">Total Contract Value</div>
+            <div class="price-amount ibm" id="ibm-total">—</div>
+          </div>
+          <div class="card-breakdown">
+            <div class="bd-row">
+              <span class="bd-key">Per year</span>
+              <span class="bd-val" id="ibm-per-year">—</span>
+            </div>
+            <div class="bd-row">
+              <span class="bd-key">Rate</span>
+              <span class="bd-val">€1,000 / socket / yr</span>
+            </div>
+            <div class="bd-row">
+              <span class="bd-key">Minimum term</span>
+              <span class="bd-val">None — fully flexible</span>
+            </div>
+          </div>
+          <div class="card-footnote">
+            IBM indicative pricing. No minimum term commitment required. Toggle above to compare 1-year vs 3-year contract value.
+          </div>
+        </div>
+
+      </div><!-- /card-grid -->
+
+      <!-- Savings Panel -->
+      <div class="savings-panel" id="savings-panel">
+        <div class="savings-left">
+          <div class="savings-headline" id="savings-headline">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M16 2a14 14 0 1 0 0 28A14 14 0 0 0 16 2zm-2 20.59L7.41 16 9 14.41l5 5L23 11.41 24.59 13l-10.59 9.59z"/></svg>
+            Potential saving with IBM (3yr vs 3yr)
+          </div>
+          <div class="savings-sub" id="savings-sub">Comparing VMware 3-year mandatory term against IBM 3-year total</div>
+        </div>
+        <div class="savings-figure" id="savings-amount">—</div>
+      </div>
+
+      <!-- Actions -->
+      <div class="actions-bar">
+        <button class="btn-primary" onclick="window.print()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M28 10h-4V4H8v6H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h4v4h16v-4h4a2 2 0 0 0 2-2V12a2 2 0 0 0-2-2zm-18-4h12v4H10V6zM22 26H10v-8h12v8zm6-4h-4v-4H8v4H4V12h24v10z"/></svg>
+          Print / Save as PDF
+        </button>
+      </div>
+
+    </div><!-- /results-section -->
+
+  </main>
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════ -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-arrow-mark">ARROW</div>
+        <div class="footer-text">Enterprise Computing Solutions &nbsp;·&nbsp; IBM Practice</div>
+      </div>
+      <div class="footer-disclaimer">
+        All figures are indicative only. An official Arrow ECS quote is required before any commercial commitment. Prices exclude applicable taxes.
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════
+       JAVASCRIPT
+  ═══════════════════════════════════════════ -->
+  <script>
+    /* ── Constants ── */
+    const VMWARE_PRICE_PER_CORE = 400;
+    const VMWARE_TERM_YEARS     = 3;
+    const IBM_PRICE_PER_SOCKET  = 1000;
+
+    /* ── Server profiles ── */
+    const PROFILES = [
+      { label: '1S / 4C   — Edge / ROBO (e.g. Xeon E)',       sockets: 1, cores: 4,  group: '1 Socket' },
+      { label: '1S / 8C   — Entry single-socket',             sockets: 1, cores: 8,  group: '1 Socket' },
+      { label: '1S / 16C  — Mid single-socket (e.g. Xeon W)', sockets: 1, cores: 16, group: '1 Socket' },
+      { label: '1S / 32C  — High single-socket',              sockets: 1, cores: 32, group: '1 Socket' },
+      { label: '1S / 48C  — High single-socket',              sockets: 1, cores: 48, group: '1 Socket' },
+      { label: '1S / 64C  — Max single-socket (e.g. Xeon w9)', sockets: 1, cores: 64, group: '1 Socket' },
+      { label: '2S / 8C   — Entry (e.g. Xeon Bronze)',        sockets: 2, cores: 8,  group: '2 Socket' },
+      { label: '2S / 16C  — Entry (e.g. Xeon Silver)',        sockets: 2, cores: 16, group: '2 Socket' },
+      { label: '2S / 32C  — Mid-range (e.g. Xeon Gold)',      sockets: 2, cores: 32, group: '2 Socket' },
+      { label: '2S / 48C  — Performance (e.g. Xeon Gold)',    sockets: 2, cores: 48, group: '2 Socket' },
+      { label: '2S / 64C  — High-core (e.g. Xeon Platinum)',  sockets: 2, cores: 64, group: '2 Socket' },
+      { label: '4S / 16C  — Scale-up entry',                  sockets: 4, cores: 16, group: '4 Socket' },
+      { label: '4S / 32C  — Scale-up mid-low',                sockets: 4, cores: 32, group: '4 Socket' },
+      { label: '4S / 48C  — Scale-up mid',                    sockets: 4, cores: 48, group: '4 Socket' },
+      { label: '4S / 64C  — Scale-up high',                   sockets: 4, cores: 64, group: '4 Socket' },
+      { label: '4S / 96C  — Scale-up very high',              sockets: 4, cores: 96, group: '4 Socket' },
+      { label: '4S / 128C — Scale-up max',                    sockets: 4, cores: 128, group: '4 Socket' },
+    ];
+
+    /* ── Theme toggle ── */
+    function toggleTheme() {
+      const html  = document.documentElement;
+      const isDark = html.getAttribute('data-theme') === 'dark';
+      const next  = isDark ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      document.getElementById('theme-label').textContent    = isDark ? 'Dark Mode'  : 'Light Mode';
+      document.getElementById('theme-icon-sun').style.display  = isDark ? 'block' : 'none';
+      document.getElementById('theme-icon-moon').style.display = isDark ? 'none'  : 'block';
+    }
+
+    /* ── State ── */
+    let ibmTerm  = 1;
+    let rowIdSeq = 0;
+
+    /* ── Formatters ── */
+    const fmt    = n => '€' + Math.round(n).toLocaleString('en-IE');
+    const fmtNum = n => n.toLocaleString('en-IE');
+
+    /* ── Profile options HTML ── */
+    function profileOptionsHTML() {
+      let h = '<option value="">— Select a profile —</option>';
+      let currentGroup = null;
+      PROFILES.forEach((p, i) => {
+        if (p.group !== currentGroup) {
+          if (currentGroup !== null) h += '</optgroup>';
+          h += `<optgroup label="${p.group}">`;
+          currentGroup = p.group;
+        }
+        h += `<option value="${i}">${p.label}</option>`;
+      });
+      if (currentGroup !== null) h += '</optgroup>';
+      return h;
+    }
+
+    /* ── Add row ── */
+    function addRow(profileIdx = '', qty = 1) {
+      const id  = ++rowIdSeq;
+      const row = document.createElement('div');
+      row.className  = 'server-row';
+      row.dataset.id = id;
+      row.innerHTML  = `
+        <div class="env-td">
+          <select onchange="rowChanged(${id})">${profileOptionsHTML()}</select>
+        </div>
+        <div class="env-td">
+          <input type="number" min="1" step="1" value="${qty}" oninput="rowChanged(${id})" />
+        </div>
+        <div class="env-td">
+          <div class="row-subtotal" id="row-subtotal-${id}">—</div>
+        </div>
+        <div class="env-td">
+          <button class="btn-remove-row" onclick="removeRow(${id})" title="Remove row">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32" fill="currentColor">
+              <path d="M24 9.4 22.6 8 16 14.6 9.4 8 8 9.4l6.6 6.6L8 22.6 9.4 24l6.6-6.6 6.6 6.6 1.4-1.4-6.6-6.6L24 9.4z"/>
+            </svg>
+          </button>
+        </div>
+      `;
+      if (profileIdx !== '') row.querySelector('select').value = profileIdx;
+      document.getElementById('server-rows').appendChild(row);
+      syncButtons();
+      recalculate();
+    }
+
+    /* ── Remove row ── */
+    function removeRow(id) {
+      const container = document.getElementById('server-rows');
+      const row = container.querySelector(`[data-id="${id}"]`);
+      if (row) container.removeChild(row);
+      syncButtons();
+      recalculate();
+    }
+
+    /* ── Sync remove-button disabled state + row count ── */
+    function syncButtons() {
+      const rows = document.querySelectorAll('#server-rows .server-row');
+      rows.forEach(r => {
+        r.querySelector('.btn-remove-row').disabled = rows.length === 1;
+      });
+      document.getElementById('row-count-label').textContent =
+        rows.length === 1 ? '1 server type configured' : `${rows.length} server types configured`;
+    }
+
+    /* ── Row changed ── */
+    function rowChanged(id) {
+      updateRowSubtotal(id);
+      recalculate();
+    }
+
+    /* ── Per-row subtotal ── */
+    function updateRowSubtotal(id) {
+      const row  = document.querySelector(`#server-rows [data-id="${id}"]`);
+      const pidx = row.querySelector('select').value;
+      const qty  = parseInt(row.querySelector('input').value, 10) || 0;
+      const el   = document.getElementById(`row-subtotal-${id}`);
+      if (pidx === '' || qty < 1) { el.innerHTML = '—'; return; }
+      const p = PROFILES[pidx];
+      el.innerHTML =
+        `<span class="rs-val">${fmtNum(qty * p.sockets)}</span>&nbsp;skt&nbsp;&nbsp;/&nbsp;&nbsp;<span class="rs-val">${fmtNum(qty * p.cores)}</span>&nbsp;cores`;
+    }
+
+    /* ── Main recalculate ── */
+    function recalculate() {
+      const rows = document.querySelectorAll('#server-rows .server-row');
+      let totalServers = 0, totalSockets = 0, totalCores = 0, anyValid = false;
+
+      rows.forEach(row => {
+        const pidx = row.querySelector('select').value;
+        const qty  = parseInt(row.querySelector('input').value, 10) || 0;
+        if (pidx !== '' && qty >= 1) {
+          const p = PROFILES[pidx];
+          totalServers += qty;
+          totalSockets += p.sockets * qty;
+          totalCores   += p.cores   * qty;
+          anyValid      = true;
+        }
+      });
+
+      const strip   = document.getElementById('config-strip');
+      const results = document.getElementById('results-section');
+
+      if (!anyValid) {
+        strip.style.display   = 'none';
+        results.style.display = 'none';
+        return;
+      }
+
+      /* Config strip */
+      strip.style.display   = 'flex';
+      results.style.display = 'block';
+      document.getElementById('summary-servers').textContent = fmtNum(totalServers);
+      document.getElementById('summary-sockets').textContent = fmtNum(totalSockets);
+      document.getElementById('summary-cores').textContent   = fmtNum(totalCores);
+
+      /* VMware */
+      const vmwareTotal = totalCores * VMWARE_PRICE_PER_CORE * VMWARE_TERM_YEARS;
+      document.getElementById('vmware-total').textContent    = fmt(vmwareTotal);
+      document.getElementById('vmware-per-year').textContent = fmt(vmwareTotal / VMWARE_TERM_YEARS);
+
+      /* IBM */
+      const ibmTotal = totalSockets * IBM_PRICE_PER_SOCKET * ibmTerm;
+      document.getElementById('ibm-total').textContent       = fmt(ibmTotal);
+      document.getElementById('ibm-per-year').textContent    = fmt(ibmTotal / ibmTerm);
+      document.getElementById('ibm-term-badge').textContent  = ibmTerm === 1 ? '1-Year Term' : '3-Year Term';
+
+      /* Savings — always 3yr vs 3yr */
+      const ibm3yr   = totalSockets * IBM_PRICE_PER_SOCKET * 3;
+      const saving   = vmwareTotal - ibm3yr;
+      const panel    = document.getElementById('savings-panel');
+      const headline = document.getElementById('savings-headline');
+      const sub      = document.getElementById('savings-sub');
+      const figure   = document.getElementById('savings-amount');
+
+      panel.classList.remove('negative');
+
+      if (saving > 0) {
+        panel.classList.remove('negative');
+        headline.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M16 2a14 14 0 1 0 0 28A14 14 0 0 0 16 2zm-2 20.59L7.41 16 9 14.41l5 5L23 11.41 24.59 13l-10.59 9.59z"/></svg> Potential saving with IBM (3yr vs 3yr)`;
+        sub.textContent    = 'IBM 3-year total is less than VMware 3-year mandatory term';
+        figure.textContent = fmt(saving);
+      } else if (saving < 0) {
+        panel.classList.add('negative');
+        headline.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M16 2a14 14 0 1 0 0 28A14 14 0 0 0 16 2zm-2 5h4v11h-4V7zm2 15.5a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/></svg> VMware 3yr is lower than IBM 3yr for this profile`;
+        sub.textContent    = 'IBM 3-year total exceeds VMware 3-year total by this amount';
+        figure.textContent = fmt(Math.abs(saving));
+      } else {
+        figure.textContent = '€0';
+      }
+    }
+
+    /* ── IBM term toggle ── */
+    function setIBMTerm(years) {
+      ibmTerm = years;
+      document.getElementById('btn-1yr').classList.toggle('active', years === 1);
+      document.getElementById('btn-3yr').classList.toggle('active', years === 3);
+      recalculate();
+    }
+
+    /* ── Init ── */
+    document.getElementById('btn-add-row').addEventListener('click', () => addRow());
+    addRow();
+  </script>
+
+</body>
+</html>
